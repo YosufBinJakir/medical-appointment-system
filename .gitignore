@@ -1,0 +1,35 @@
+# Ignore Visual Studio cache, build, and user files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+out/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+*.nuget.props
+*.nuget.targets
+
+# Rider / VS Code
+.idea/
+.vscode/
+
+# Others
+*.cache
+*.dbmdl
+*.bak
+*.ldf
+*.mdf
