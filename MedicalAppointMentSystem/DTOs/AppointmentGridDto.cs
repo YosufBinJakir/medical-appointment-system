@@ -10,12 +10,12 @@ namespace MedicalAppointMentSystem.DTOs
 {
     public class AppointmentGridDto
     {
-       
+       public int AppointmentId { get; set; }
         public string? DoctorName { get; set; } 
         public string? PatientName { get; set; }
         public string? VisitType { get; set; }
         public string? Diagnosis { get; set; } = default!;
-        public DateTime Date { get; set; }
+        public DateTime AppointDate { get; set; }
         //public ICollection<PrescriptionDetail>? PrescriptionDetails { get; set; } = default!;
     }
 }
