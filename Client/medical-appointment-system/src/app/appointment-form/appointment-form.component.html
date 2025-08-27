@@ -1,0 +1,102 @@
+
+<div class="modal-body">
+    <form [formGroup]="appointmentForm">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label">Patient Name</label>
+              <select class="form-select" formControlName="patientId" required>
+                <option value="">Select doctor</option>
+                <option *ngFor="let p of patients" [value]="p.patientId">
+                  {{ p.patientName }} 
+                </option>
+              </select>
+            </div>
+          </div>
+      
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label">Doctor Name</label>
+              <select class="form-select" formControlName="doctorId" required>
+                <option value="">Select doctor</option>
+                <option *ngFor="let d of doctors" [value]="d.doctorId">
+                  {{ d.doctorName }} 
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      
+        <div class="mb-3">
+          <label class="form-label">Appointment Date</label>
+          <input type="date" class="form-control" formControlName="appointmentDate" />
+        </div>
+      
+        <div class="mb-3">
+          <label class="form-label">Visit Type</label>
+          <div class="d-flex gap-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="visitType" value="First Visit" />
+              <label class="form-check-label">First Visit</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="visitType" value="Follow-up" />
+              <label class="form-check-label">Follow-up</label>
+            </div>
+          </div>
+        </div>
+      
+        <div class="mb-3">
+          <label class="form-label">Notes</label>
+          <textarea class="form-control" rows="3" formControlName="notes"></textarea>
+        </div>
+      
+        <div class="mb-3">
+          <label class="form-label">Diagnosis</label>
+          <textarea class="form-control" rows="3" formControlName="diagnosis"></textarea>
+        </div>
+      
+        <!-- Prescription Detail Section -->
+        <div class="mb-3">
+          <label class="form-label">Prescriptions</label>
+          <button type="button" class="btn btn-success btn-sm ms-2" (click)="addPrescription()">
+            + Add Row
+          </button>
+        </div>
+      
+        <div formArrayName="prescriptionDetailFormDtos">
+          <div *ngFor="let pres of prescriptions.controls; let i = index" [formGroupName]="i" class="row mb-2 border p-2 rounded">
+            <div class="col-md-2">
+              <!-- <input type="number" class="form-control" formControlName="medicineId" placeholder="Medicine ID"> -->
+              <select class="form-select" formControlName="medicineId" required>
+                <option value="">Select Medicine</option>
+                <option *ngFor="let m of medicines" [value]="m.medicineId">
+                  {{ m.medicineName }} 
+                </option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" formControlName="dosage" placeholder="Dosage">
+            </div>
+            <div class="col-md-2">
+              <input type="date" class="form-control" formControlName="startDate">
+            </div>
+            <div class="col-md-2">
+              <input type="date" class="form-control" formControlName="endDate">
+            </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control" formControlName="notes" placeholder="Notes">
+            </div>
+            <div class="col-md-1 d-flex align-items-center">
+              <button type="button" class="btn btn-danger btn-sm" (click)="removePrescription(i)">X</button>
+            </div>
+          </div>
+        </div>
+      </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="submit()">
+      <i class="bi bi-save"></i> Save Appointment
+    </button>
+  </div>

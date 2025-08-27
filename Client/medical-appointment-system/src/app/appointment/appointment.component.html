@@ -1,251 +1,203 @@
-<p>appointment works!</p>
-<!-- Appointments Section -->
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4><i class="bi bi-calendar-check"></i> Appointments Management</h4>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#appointmentModal">
-        <i class="bi bi-plus"></i> New Appointment
-    </button>
-</div>
-
-<!-- Search and Filter -->
-<div class="card mb-4">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-search"></i></span>
-                    <input type="text" class="form-control" placeholder="Search by doctor...">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <select class="form-select">
-                    <option value="">All Visit Types</option>
-                    <option value="new">New Visit</option>
-                    <option value="followup">Follow-up</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <select class="form-select">
-                    <option value="">All Status</option>
-                    <option value="scheduled">Scheduled</option>
-                    <option value="completed">Completed</option>
-                    <option value="cancelled">Cancelled</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <button class="btn btn-outline-primary w-100">
-                    <i class="bi bi-funnel"></i> Filter
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Appointments Grid -->
-<div class="card">
-    <div class="card-header">
-        <h5 class="mb-0">Appointments List</h5>
-    </div>
-    <div class="card-body p-0">
-        <div class="table-responsive">
-            <table class="table table-hover mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th>Patient</th>
-                        <th>Doctor</th>
-                        <th>Date</th>
-                        <th>Visit Type</th>
-                        <th>Status</th>
-                        <th>Diagnosis</th>
-                        <th class="text-end">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>John Smith</td>
-                        <td>Dr. Sarah Johnson</td>
-                        <td>Dec 15, 2023</td>
-                        <td><span class="badge bg-primary">New Visit</span></td>
-                        <td><span class="badge bg-success">Completed</span></td>
-                        <td>Hypertension management</td>
-                        <td class="text-end">
-                            <button class="btn btn-sm btn-outline-primary me-1" title="View">
-                                <i class="bi bi-eye"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-secondary" title="Edit">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mary Davis</td>
-                        <td>Dr. Michael Brown</td>
-                        <td>Dec 14, 2023</td>
-                        <td><span class="badge bg-info">Follow-up</span></td>
-                        <td><span class="badge bg-warning">Scheduled</span></td>
-                        <td>Diabetes checkup</td>
-                        <td class="text-end">
-                            <button class="btn btn-sm btn-outline-primary me-1" title="View">
-                                <i class="bi bi-eye"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-secondary" title="Edit">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Robert Wilson</td>
-                        <td>Dr. Emily Davis</td>
-                        <td>Dec 13, 2023</td>
-                        <td><span class="badge bg-primary">New Visit</span></td>
-                        <td><span class="badge bg-danger">Cancelled</span></td>
-                        <td>-</td>
-                        <td class="text-end">
-                            <button class="btn btn-sm btn-outline-primary me-1" title="View">
-                                <i class="bi bi-eye"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-secondary" title="Edit">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Jennifer Garcia</td>
-                        <td>Dr. Sarah Johnson</td>
-                        <td>Dec 12, 2023</td>
-                        <td><span class="badge bg-info">Follow-up</span></td>
-                        <td><span class="badge bg-success">Completed</span></td>
-                        <td>Annual physical exam</td>
-                        <td class="text-end">
-                            <button class="btn btn-sm btn-outline-primary me-1" title="View">
-                                <i class="bi bi-eye"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-secondary" title="Edit">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>David Miller</td>
-                        <td>Dr. Michael Brown</td>
-                        <td>Dec 11, 2023</td>
-                        <td><span class="badge bg-primary">New Visit</span></td>
-                        <td><span class="badge bg-success">Completed</span></td>
-                        <td>Back pain assessment</td>
-                        <td class="text-end">
-                            <button class="btn btn-sm btn-outline-primary me-1" title="View">
-                                <i class="bi bi-eye"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-secondary" title="Edit">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="card-footer">
-        <div class="d-flex justify-content-between align-items-center">
-            <span class="text-muted">Showing 1-5 of 156 appointments</span>
-            <nav>
-                <ul class="pagination pagination-sm mb-0">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</div>
-
-<!-- Appointment Modal -->
 <div class="modal fade" id="appointmentModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    <i class="bi bi-plus"></i> New Appointment
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Patient Name</label>
-                                <select class="form-select" required>
-                                    <option value="">Select patient</option>
-                                    <option value="1">John Smith</option>
-                                    <option value="2">Mary Davis</option>
-                                    <option value="3">Robert Wilson</option>
-                                    <option value="4">Jennifer Garcia</option>
-                                    <option value="5">David Miller</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Doctor Name</label>
-                                <select class="form-select" required>
-                                    <option value="">Select doctor</option>
-                                    <option value="1">Dr. Sarah Johnson - Cardiology</option>
-                                    <option value="2">Dr. Michael Brown - Internal Medicine</option>
-                                    <option value="3">Dr. Emily Davis - Pediatrics</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Appointment Date</label>
-                        <input type="date" class="form-control" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Visit Type</label>
-                        <div class="d-flex gap-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="visitType" id="new" value="new" checked>
-                                <label class="form-check-label" for="new">New Visit</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="visitType" id="followup" value="followup">
-                                <label class="form-check-label" for="followup">Follow-up</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Notes</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter appointment notes..."></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Diagnosis</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter diagnosis..."></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">
-                    <i class="bi bi-save"></i> Save Appointment
-                </button>
-            </div>
-        </div>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-plus"></i>  New Appointment</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          (click)="refreshPage()"
+        ></button>
+      </div>
+      <app-appointment-form></app-appointment-form>
     </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editAppointmentment" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <i class="bi bi-pencil"></i> Edit Appointment
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          (click)="refreshPage()"
+        ></button>
+      </div>
+
+      <app-appointment-edit-form [appointment]="selectedAppointment">
+      </app-appointment-edit-form>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="mt-4">
+  
+  <div class="card shadow-sm p-3 mb-4 border-0">
+    <div class="row g-3 ">     
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0 text-primary fw-bold ">
+      <i class="bi bi-calendar-check"></i> Appointments Grid
+    </h4>
+  </div>
+<div class="row mb-4">
+    <div class="col-4 d-flex">
+        <input 
+            type="text"
+            class="form-control"
+            placeholder="Search prescriptions..."
+            [(ngModel)]="searchInput"
+            (keyup.enter)="getAppointmentList(1, 10, searchInput)"
+          />
+          <button 
+            class="btn btn-primary btn-sm"
+            type="button"
+            (click)="getAppointmentList(1, 10, searchInput)"
+          >
+            <i class="bi bi-search"></i> 
+          </button>
+    </div>
+    <div class="col-6">
+        <div class="col-md-12 text-end">
+            <button
+              class="btn btn-success"
+              data-bs-toggle="modal"
+              data-bs-target="#appointmentModal"
+            >
+              <i class="bi bi-plus-circle"></i> New Appointment
+            </button>
+          </div>
+    </div>
+</div>
+
+  <!-- Table -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped text-center">
+      <thead >
+        <tr>
+          <th>#</th>
+          <th>Doctor</th>
+          <th>Patient</th>
+          <th>Visit Type</th>
+          <th>Diagnosis</th>
+          <th>Appointment Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of appointments.data; let i = index">
+          <td>
+            {{ (pagination.currentPage - 1) * pagination.pageSize + i + 1 }}
+          </td>
+          <td>{{ a.doctorName }}</td>
+          <td>{{ a.patientName }}</td>
+          <td>{{ a.visitType }}</td>
+          <td>{{ a.diagnosis }}</td>
+          <td>{{ a.appointDate | date : "medium" }}</td>
+          <td>
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-light"
+                data-bs-toggle="modal"
+                data-bs-target="#editAppointmentment"
+                (click)="onEditAppointment(a.appointmentId)"
+              >
+                <i class="bi-pencil"></i>
+              </button>
+
+              <button
+                class="btn btn-sm"
+                (click)="delete(a.appointmentId)"
+              >
+               <i class="bi bi-trash"></i>
+              </button>
+              <button
+                class="btn  btn-sm"
+                (click)="downloadAppointmentPdf(a)"
+              >
+              <i class="bi bi-download"></i>
+              </button>
+             
+
+              <button
+                (click)="sendToPatient(a.appointmentId, a.email)"
+                class="btn "
+              >
+                <span *ngIf="!sendingMap[a.appointmentId]"
+                  ><i class="bi bi-envelope-plus-fill"></i>  Send</span
+                >
+                <span *ngIf="sendingMap[a.appointmentId]">
+                  <i class="fa fa-spinner fa-spin"></i> Sending...
+                </span>
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr *ngIf="appointments?.data?.length === 0">
+          <td colspan="7" class="text-center">No appointments found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <span>TotalPages: {{pagination.totalPages}}</span>
+  <nav *ngIf="pagination">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="!pagination.hasPrevious">
+        <a
+          class="page-link"
+          (click)="
+            getAppointmentList(
+              pagination.currentPage - 1,
+              pagination.pageSize,
+              searchInput
+            )
+          "
+        >
+          Previous
+        </a>
+      </li>
+
+      <li
+        class="page-item"
+        *ngFor="
+          let page of [].constructor(pagination.totalPages);
+          let p = index
+        "
+        [class.active]="p + 1 === pagination.currentPage"
+      >
+        <a
+          class="page-link"
+          (click)="getAppointmentList(p + 1, pagination.pageSize, searchInput)"
+        >
+          {{ p + 1 }}
+        </a>
+      </li>
+
+      <li class="page-item" [class.disabled]="!pagination.hasNext">
+        <a
+          class="page-link"
+          (click)="
+            getAppointmentList(
+              pagination.currentPage + 1,
+              pagination.pageSize,
+              searchInput
+            )
+          "
+        >
+          Next
+        </a>
+      </li>
+    </ul>
+  </nav>
 </div>

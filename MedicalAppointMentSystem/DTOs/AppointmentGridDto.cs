@@ -16,6 +16,7 @@ namespace MedicalAppointMentSystem.DTOs
         public string? VisitType { get; set; }
         public string? Diagnosis { get; set; } = default!;
         public DateTime AppointDate { get; set; }
+        public string? Email { get; set; } = default!;
         //public ICollection<PrescriptionDetail>? PrescriptionDetails { get; set; } = default!;
     }
 }

@@ -8,6 +8,7 @@ namespace MedicalAppointMentSystem.DTOs
 {
     public class PrescriptionDetailGridDto
     {
+        public int? PrescriptionDetailId { get; set; }
         public string? MedicineName { get; set; }
         public string? PatientName { get; set; }
         public string? DoctorName { get; set; }

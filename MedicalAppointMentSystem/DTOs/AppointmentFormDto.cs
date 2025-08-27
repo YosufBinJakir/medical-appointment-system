@@ -14,5 +14,6 @@ namespace MedicalAppointMentSystem.DTOs
         public string? VisitType { get; set; } =default!;
         public string? Notes { get; set; } = default!;
         public string? Diagnosis { get; set; } =default!;
+        public ICollection<PrescriptionDetailFormDto> PrescriptionDetailFormDtos { get; set; } = new List<PrescriptionDetailFormDto>(); 
     }
 }

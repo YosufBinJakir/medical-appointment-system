@@ -10,6 +10,7 @@ namespace MedicalAppointMentSystem.Entities
     {
         public int PatientId { get; set; }
         public string PatientName { get; set; } = default!;
+        public string? Email { get; set; } = default!;
 
     }
 }

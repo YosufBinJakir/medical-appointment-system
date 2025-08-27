@@ -27,59 +27,7 @@ namespace MedicalAppointMentSystem.Controllers
             _configuration = configuration;
         }
 
-        // GET: api/PrescriptionDetails
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<PrescriptionDetail>>> GetPrescriptionDetails()
-        //{
-        //    return await _context.PrescriptionDetails.ToListAsync();
-        //}
-        //public async Task<(List<AppointmentGridDto> Data, int TotalCount)> GetAppointmentsAsync(
-        //string? patientName, string? doctorName, string? visitType, string? diagnosis, int pageNumber=1, int pageSize=1)
-        //{
-        //    var appointments = new List<AppointmentGridDto>();
-        //    int totalCount = 0;
-
-        //    using (var conn = _context.Database.GetDbConnection())
-        //    {
-        //        await conn.OpenAsync();
-        //        using (var cmd = conn.CreateCommand())
-        //        {
-        //            cmd.CommandText = "GetAppointmentsWithFilterAndPaging";
-        //            cmd.CommandType = CommandType.StoredProcedure;
-
-        //            cmd.Parameters.Add(new SqlParameter("@PatientName", (object?)patientName ?? DBNull.Value));
-        //            cmd.Parameters.Add(new SqlParameter("@DoctorName", (object?)doctorName ?? DBNull.Value));
-        //            cmd.Parameters.Add(new SqlParameter("@VisitType", (object?)visitType ?? DBNull.Value));
-        //            cmd.Parameters.Add(new SqlParameter("@Diagnosis", (object?)diagnosis ?? DBNull.Value));
-        //            cmd.Parameters.Add(new SqlParameter("@PageNumber", pageNumber));
-        //            cmd.Parameters.Add(new SqlParameter("@PageSize", pageSize));
-
-        //            using (var reader = await cmd.ExecuteReaderAsync())
-        //            {
-        //                // First Resultset → Data
-        //                while (await reader.ReadAsync())
-        //                {
-        //                    appointments.Add(new AppointmentGridDto
-        //                    {
-        //                        PatientName = reader["PatientName"].ToString()!,
-        //                        DoctorName = reader["DoctorName"].ToString()!,
-        //                        Date = Convert.ToDateTime(reader["AppointDate"]),
-        //                        VisitType = reader["VisitType"].ToString()!,
-        //                        Diagnosis = reader["Diagnosis"].ToString()!
-        //                    });
-        //                }
-
-        //                // Move to second resultset → TotalCount
-        //                if (await reader.NextResultAsync() && await reader.ReadAsync())
-        //                {
-        //                    totalCount = Convert.ToInt32(reader["TotalCount"]);
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    return (appointments, totalCount);
-        //}
+      
         public async Task<IActionResult> GetPrescriptionDetails(
         [FromQuery] string? searchInput = null,
         [FromQuery] int pageNumber = 1,
@@ -109,6 +57,7 @@ namespace MedicalAppointMentSystem.Controllers
                                 var prescriptionDetail = new PrescriptionDetailGridDto
                                 {
                                    // AppointmentId = reader.GetInt32("AppointmentId"),
+                                   PrescriptionDetailId = reader.GetInt32("PrescriptionDetailId"),
                                     PatientName = reader.GetString("PatientName"),
                                     DoctorName = reader.GetString("DoctorName"),
                                     AppointmentDate = reader.GetDateTime("AppointDate"),
@@ -122,13 +71,9 @@ namespace MedicalAppointMentSystem.Controllers
 
                                 };
 
-                                // Get pagination info from first row
                                 if (prescriptionDetails.Count == 0)
                                 {
-                                    //paginationInfo.TotalCount = reader.GetInt32("TotalCount");
-                                    //paginationInfo.CurrentPage = reader.GetInt32("CurrentPage");
-                                    //paginationInfo.PageSize = reader.GetInt32("PageSize");
-                                    //paginationInfo.TotalPages = reader.GetInt32("TotalPages");
+                                    
                                     paginationInfo.TotalCount = Convert.ToInt32(reader["TotalCount"]);
                                     paginationInfo.CurrentPage = Convert.ToInt32(reader["CurrentPage"]);
                                     paginationInfo.PageSize = Convert.ToInt32(reader["PageSize"]);
@@ -232,6 +177,23 @@ namespace MedicalAppointMentSystem.Controllers
             _context.PrescriptionDetails.Remove(prescriptionDetail);
             await _context.SaveChangesAsync();
 
+            return NoContent();
+        }
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdatePrescription(int id, [FromBody] PrescriptionDetailEditDto dto)
+        {
+            var prescription = await _context.PrescriptionDetails.FindAsync(id);
+            if (prescription == null)
+                return NotFound();
+
+          
+            if (dto.MedicineId.HasValue) prescription.MedicineId = dto.MedicineId;
+            if (!string.IsNullOrEmpty(dto.Dosage)) prescription.Dosage = dto.Dosage;
+            if (!string.IsNullOrEmpty(dto.Notes)) prescription.Notes = dto.Notes;
+            if (dto.StartDate.HasValue) prescription.StartDate = dto.StartDate;
+            if (dto.EndDate.HasValue) prescription.EndDate = dto.EndDate;
+
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
